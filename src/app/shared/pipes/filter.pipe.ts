@@ -1,33 +1,17 @@
 import { Pipe, PipeTransform } from '@angular/core';
+import { Media } from '../../core/models/app.model';
 
 @Pipe({
   name: 'filter',
-  standalone: true
+  standalone: true,
 })
 export class FilterPipe implements PipeTransform {
-
-  transform(value: unknown, ...args: unknown[]): unknown {
-    return null;
+  transform(media: Media[], searchTerm: string): Media[] {
+    if (!media || !searchTerm) {
+      return media;
+    }
+    return media.filter((content) =>
+      content.title.toLowerCase().includes(searchTerm.toLowerCase())
+    );
   }
-
 }
-
-
-// // filter.pipe.ts
-// import { Pipe, PipeTransform } from '@angular/core';
-// import { Content } from '../core/models/content.model';
-
-// @Pipe({
-//   name: 'filter',
-//   pure: true
-// })
-// export class FilterPipe implements PipeTransform {
-//   transform(contents: Content[], searchTerm: string): Content[] {
-//     if (!contents || !searchTerm) {
-//       return contents;
-//     }
-//     return contents.filter(content =>
-//       content.title.toLowerCase().includes(searchTerm.toLowerCase())
-//     );
-//   }
-// }

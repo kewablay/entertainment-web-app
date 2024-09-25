@@ -1,13 +1,6 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import { AppState } from '../app.state';
 import { MediaState } from './media.reducer';
-
-// export const selectMediaState = (state: AppState) => state.media;
-
-// export const selectAllMediaItems = createSelector(
-//   selectMediaState,
-//   (state) => mediaState.media
-// );
+import { Media } from '../../models/app.model';
 
 export const selectMediaState = createFeatureSelector<MediaState>('media');
 
@@ -15,3 +8,24 @@ export const selectAllMediaItems = createSelector(
   selectMediaState,
   (state) => state.media
 );
+
+export const selectSearchTerm = createSelector(
+  selectMediaState,
+  (state) => state.searchTerm
+);
+
+
+export const selectFilteredMediaItems = (category: string | null) =>
+  createSelector(selectAllMediaItems, selectSearchTerm, (media, searchTerm) => {
+    if (!searchTerm) return media;
+    return media.filter((item) => {
+      const matchesSearch = item.title
+        .toLowerCase()
+        .includes(searchTerm.toLowerCase());
+
+      const matchesCategory =
+        !category || item.category.toLowerCase() === category.toLowerCase();
+
+      return matchesSearch && matchesCategory;
+    });
+  });

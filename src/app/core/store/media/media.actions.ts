@@ -11,3 +11,8 @@ export const loadMediaError = createAction(
   '[Media] Load Media Error',
   props<{ error: any }>()
 );
+
+export const setSearchTerm = createAction(
+  '[Media] Set Search Term',
+  props<{ searchTerm: string }>()
+);

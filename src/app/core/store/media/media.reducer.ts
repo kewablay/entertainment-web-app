@@ -1,15 +1,22 @@
 import { createReducer, on } from '@ngrx/store';
 import { Media } from '../../models/app.model';
-import { loadMedia, loadMediaError, loadMediaSuccess } from './media.actions';
+import {
+  loadMedia,
+  loadMediaError,
+  loadMediaSuccess,
+  setSearchTerm,
+} from './media.actions';
 
 export interface MediaState {
   media: Media[];
+  searchTerm: string;
   loading: boolean;
   error: any;
 }
 
 export const initialMediaState: MediaState = {
   media: [],
+  searchTerm: '',
   loading: false,
   error: null,
 };
@@ -22,5 +29,6 @@ export const mediaReducer = createReducer(
     media,
     loading: false,
   })),
-  on(loadMediaError, (state, { error }) => ({ ...state, error }))
+  on(loadMediaError, (state, { error }) => ({ ...state, error })),
+  on(setSearchTerm, (state, { searchTerm }) => ({ ...state, searchTerm }))
 );

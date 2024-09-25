@@ -1,1 +1,10 @@
-<p>home works!</p>
+<main>
+  <app-navbar />
+  <section class="content">
+    <app-search-bar />
+
+    @for(media of filteredMedia$ | async; track media) {
+    <p>{{ media.title }}</p>
+    }
+  </section>
+</main>
