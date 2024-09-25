@@ -1,7 +1,55 @@
-<div class="card">
-  <!-- <img [src]="media.thumbnail.regular.large" alt="Card image cap" /> -->
+@if(isTrending) {
+<div class="trending-card">
+  <img [src]="media.thumbnail.trending.large" alt="trending-image" />
+
   <div class="card-body">
-    <h5 class="card-title">{{ media.title }}</h5>
-    <p class="card-text">{{ media.year }}</p>
+    <div class="detail">
+      <div class="year-and-category">
+        <span>{{ media.year }}</span> •
+        <span class="category"
+          ><img
+            src="{{
+              media.category === 'Movie'
+                ? 'assets/icon-category-movie.svg'
+                : 'assets/icon-category-tv.svg'
+            }}"
+            alt=""
+          />{{ media.category }}</span
+        >
+        •
+        <span>{{ media.rating }}</span>
+      </div>
+
+      <h3>{{ media.title }}</h3>
+    </div>
   </div>
 </div>
+} @else {
+<div class="regular-card">
+  <div class="card-img">
+    <img [src]="media.thumbnail.regular.large" alt="regular-image" />
+  </div>
+
+  <div class="card-body">
+    <div class="detail">
+      <div class="year-and-category">
+        <span>{{ media.year }}</span
+        >•
+        <span class="category"
+          ><img
+            src="{{
+              media.category === 'Movie'
+                ? 'assets/icon-category-movie.svg'
+                : 'assets/icon-category-tv.svg'
+            }}"
+            alt=""
+          />{{ media.category }}</span
+        >•
+        <span>{{ media.rating }}</span>
+      </div>
+
+      <h3>{{ media.title }}</h3>
+    </div>
+  </div>
+</div>
+}

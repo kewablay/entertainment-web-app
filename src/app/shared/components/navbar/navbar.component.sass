@@ -8,10 +8,23 @@ nav
     border-radius: 10px
     padding: 1rem
     margin-bottom: 1rem
+    z-index: 1000
+
+    +breakpoint(xlarge)
+        position: fixed
+        height: 95%
+        width: 70px
+        +flex-between($direction: column)
+        justify-content: flex-start
     
 
     .nav-list 
         +flex($direction: row, $gap: 1.5rem)
+
+        @include breakpoint($breakpoint: xlarge)
+            +flex($direction: column, $gap: 1.6rem)
+            margin-top: 3rem
+        
 
         div
             +flex-center()
@@ -22,6 +35,9 @@ nav
         overflow: hidden
         border-radius: 50%
         border: 1px solid white
+
+        +breakpoint(xlarge)
+            margin-top: auto
 
         img
             width: 100%

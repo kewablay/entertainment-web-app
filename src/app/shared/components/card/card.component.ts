@@ -10,4 +10,5 @@ import { Media } from '../../../core/models/app.model';
 })
 export class CardComponent {
   @Input() media!: Media;
+  @Input() isTrending!: boolean;
 }

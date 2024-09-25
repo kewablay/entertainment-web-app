@@ -17,12 +17,14 @@ body
 
 h1
   font-size: get-font-size(header, 'md')
+  font-weight: 400
   @include breakpoint(medium)
     font-size: get-font-size(header, 'lg')
 
 
 h3
   font-size: get-font-size(body, 'lg')
+  font-weight: 400
   @include breakpoint(medium)
     font-size: get-font-size(header, 'md')
 
@@ -31,3 +33,17 @@ p
   font-size: get-font-size(body, 'md')
   @include breakpoint(medium)
     font-size: get-font-size(body, 'lg')
+
+.custom-grid
+  display: grid
+  grid-template-columns: repeat(2, 1fr)
+  gap: 1.2rem
+
+  +breakpoint(medium)
+      grid-template-columns: repeat(3, 1fr)
+      gap: 1.5rem
+      
+
+  +breakpoint(large)
+      grid-template-columns: repeat(4, 1fr)
+      gap: 2rem

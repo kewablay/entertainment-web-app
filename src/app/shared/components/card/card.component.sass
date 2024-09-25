@@ -1,0 +1,87 @@
+@use '../../../../styles/_mixins.sass' as *
+@use '../../../../styles/_variables.sass' as *
+@use '../../../../styles/_functions.sass' as *
+
+    
+.trending-card
+    border-radius: 10px
+    width: 350px
+    height: 200px
+    // padding: 1rem
+    overflow: hidden
+    position: relative
+
+    +breakpoint(small) 
+        width: 500px
+        height: 250px
+
+    img
+        width: 100%
+        height: 100%
+        object-fit: cover
+
+    .card-body
+        padding: 1rem
+        position: absolute
+        bottom: 0
+        left: 0
+        right: 0
+        background: linear-gradient(180deg, rgba(0, 0, 0, 0.0001) 0%, rgba(0, 0, 0, 0.75) 100%)
+        backdrop-filter: blur(1px)
+        +flex-between($direction: row, $gap: .5rem)
+
+        .detail
+            .year-and-category
+                +flex($direction: row, $gap: .5rem)
+                color: $text-secondary
+
+                span
+                    font-size: 13px
+                    +breakpoint(medium) 
+                        font-size: 15px
+                .category 
+                    +flex($direction: row, $gap: .5rem)
+                    img
+                        width: 12px
+                        width: 12px
+
+      
+
+
+
+.regular-card 
+    border-radius: 10px
+
+    .card-img
+        width: 100%
+        height: 140px
+        border-radius: 10px
+        overflow: hidden
+
+        +breakpoint(small) 
+            height: 180px
+        
+        img
+            width: 100%
+            border-radius: 10px
+            height: 100%
+            object-fit: cover
+
+    .card-body
+        .detail 
+            +flex($direction: column, $gap: .3rem)
+
+            .year-and-category
+                +flex($direction: row, $gap: .5rem)
+                color: $text-secondary
+
+                span
+                    font-size: 13px
+                    +breakpoint(medium) 
+                        font-size: 15px
+
+                .category 
+                    +flex($direction: row, $gap: .5rem)
+                    img
+                        width: 12px
+                        width: 12px

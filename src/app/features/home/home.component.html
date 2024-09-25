@@ -2,9 +2,34 @@
   <app-navbar />
   <section class="content">
     <app-search-bar />
+    @if(filteredMedia$ | async; as filteredMediaItems) {
+    <div class="media-list">
+      <!-- Trending Section -->
+      <div class="trending">
+        <h1>Trending</h1>
+        <div class="trending-list">
+          @for(media of filteredMediaItems; track media) { @if(media.isTrending)
+          {
+          <app-card [media]="media" [isTrending]="true" />
 
-    @for(media of filteredMedia$ | async; track media) {
-    <p>{{ media.title }}</p>
+          } }
+        </div>
+      </div>
+      <!-- Trending Section ends -->
+
+      <!-- Recommended for you  -->
+      <div class="recommended">
+        <h1>Recommended for you</h1>
+        <div class="recommended-list custom-grid">
+          @for(media of filteredMediaItems; track media) {
+
+          <app-card [media]="media"  />
+
+          }
+        </div>
+      </div>
+      <!-- Recommended for you ends -->
+    </div>
     }
   </section>
 </main>

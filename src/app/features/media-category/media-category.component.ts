@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component } from '@angular/core';
+import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable, of, switchMap } from 'rxjs';
 import { selectFilteredMediaItems } from '../../core/store/media/media.selectors';
@@ -21,20 +21,15 @@ export class MediaCategoryComponent {
   filteredMediaItems$!: Observable<Media[]>;
   category: string | null = null;
 
-  constructor(
-    private store: Store<AppState>, 
-    private route: ActivatedRoute,
-    private cdr: ChangeDetectorRef // Inject ChangeDetectorRef
-  ) {}
+  constructor(private store: Store<AppState>, private route: ActivatedRoute) {}
 
   ngOnInit() {
     this.filteredMediaItems$ = this.route.paramMap.pipe(
       switchMap((params) => {
         this.category = params.get('category');
-        this.cdr.detectChanges(); // Manually trigger change detection
         return this.store.select(selectFilteredMediaItems(this.category));
       })
     );
   }
-
+  
 }

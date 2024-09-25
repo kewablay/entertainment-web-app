@@ -9,6 +9,7 @@
     position: relative
     background: $background 
     +flex()
+    margin-bottom: 1rem
 
     input[type="search"]
         background: $background
@@ -18,11 +19,11 @@
         box-shadow: none
         border: none
         outline: none
-        // margin: 3rem
         font-size: get-font-size(body, 'lg')
         color: $text 
         caret-color: $clr-red
         border-bottom: solid 1px #ffffff00
+        transition: .25s ease
 
         &::placeholder
             color: $text-secondary
