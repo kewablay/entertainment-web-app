@@ -9,6 +9,13 @@ export const routes: Routes = [
       ),
   },
   {
+    path: ':category',
+    loadComponent: () =>
+      import('./pages/media-list/media-list.component').then(
+        (m) => m.MediaListComponent
+      ),
+  },
+  {
     path: 'sign-in',
     loadComponent: () =>
       import('./pages/sign-in/sign-in.component').then(
