@@ -1,8 +1,7 @@
 @use '../../../styles/_variables.sass' as *
 @use '../../../styles/_mixins.sass' as *
    
-main
-    padding: 1rem
+.home
 
     .content
         +breakpoint(xlarge)
@@ -19,6 +18,7 @@ main
                 margin-bottom: 2rem
                 h1
                     margin-bottom: 1rem
+                    text-transform: capitalize
                 .trending-list
                     +flex($direction:row, $gap: 1.5rem)
                     width: 100%
@@ -29,8 +29,8 @@ main
                     &::-webkit-scrollbar
                         display: none
 
-                    +breakpoint(medium) 
-                        +flex($direction:row, $gap: 2rem)
+                    // +breakpoint(medium) 
+                    //     +flex($direction:row, $gap: 2rem)
 
 
             .recommended

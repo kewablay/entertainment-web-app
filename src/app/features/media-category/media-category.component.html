@@ -1,13 +1,15 @@
-<main>
-  <app-navbar />
+<section class="category">
   <section class="content">
     <app-search-bar />
     @if(filteredMediaItems$ | async; as filteredMediaItems) {
-        <div class="media-list">
-          @for(media of filteredMediaItems; track media) {
-            <app-card [media]="media" />
-          }
-        </div>
+    <div class="media-list">
+      <h1 class="category-title">{{ category }}</h1>
+      <div class="media-list custom-grid">
+        @for(media of filteredMediaItems; track media) {
+        <app-card [media]="media" />
+        }
+      </div>
+    </div>
     }
   </section>
-</main>
+</section>

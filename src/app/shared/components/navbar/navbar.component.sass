@@ -1,6 +1,11 @@
 @use '../../../../styles/_variables.sass' as *
 @use '../../../../styles/_mixins.sass' as *
 
+.active-link
+    svg
+        path 
+            fill: white
+
 
 nav 
     +flex-between()
@@ -13,21 +18,29 @@ nav
     +breakpoint(xlarge)
         position: fixed
         height: 95%
+        top: 1.2rem
         width: 70px
         +flex-between($direction: column)
         justify-content: flex-start
     
 
     .nav-list 
-        +flex($direction: row, $gap: 1.5rem)
+        +flex($direction: row, $gap: .9rem)
+
+        +breakpoint(small)
+            +flex($direction: row, $gap: 1.5rem)
 
         @include breakpoint($breakpoint: xlarge)
             +flex($direction: column, $gap: 1.6rem)
             margin-top: 3rem
         
 
-        div
+        button
+            background: transparent
+            border: none
+            outline: none
             +flex-center()
+            
 
     .profile
         width: 30px
