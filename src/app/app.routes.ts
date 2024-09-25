@@ -7,7 +7,7 @@ export const routes: Routes = [
       import('./features/home/home.component').then((m) => m.HomeComponent),
   },
   {
-    path: 'categories/:category',
+    path: 'media/:category',
     loadComponent: () =>
       import('./features/media-category/media-category.component').then(
         (m) => m.MediaCategoryComponent

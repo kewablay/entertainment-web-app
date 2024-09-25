@@ -1,0 +1,38 @@
+@use '../../../../styles/_variables.sass' as *
+@use '../../../../styles/_mixins.sass' as *
+@use '../../../../styles/_functions.sass' as *
+
+
+
+.search 
+    width: 100%
+    position: relative
+    background: $background 
+    +flex()
+
+    input[type="search"]
+        background: $background
+        width: 100%
+        box-sizing: border-box
+        padding: 1rem
+        box-shadow: none
+        border: none
+        outline: none
+        // margin: 3rem
+        font-size: get-font-size(body, 'lg')
+        color: $text 
+        caret-color: $clr-red
+        border-bottom: solid 1px #ffffff00
+
+        &::placeholder
+            color: $text-secondary
+            font-family: $ff-outfit
+            font-weight: 300
+
+        &:focus
+            border-color: $greyish-blue
+
+
+    .search-icon
+        +flex-center()
+        background: $background

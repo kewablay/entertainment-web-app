@@ -10,3 +10,24 @@
   font-family: $ff-outfit
 
 
+body 
+  background: $background
+  color: $text
+
+
+h1
+  font-size: get-font-size(header, 'md')
+  @include breakpoint(medium)
+    font-size: get-font-size(header, 'lg')
+
+
+h3
+  font-size: get-font-size(body, 'lg')
+  @include breakpoint(medium)
+    font-size: get-font-size(header, 'md')
+
+
+p
+  font-size: get-font-size(body, 'md')
+  @include breakpoint(medium)
+    font-size: get-font-size(body, 'lg')
