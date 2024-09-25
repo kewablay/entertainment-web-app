@@ -4,29 +4,13 @@ export const routes: Routes = [
   {
     path: '',
     loadComponent: () =>
-      import('./pages/media-list/media-list.component').then(
-        (m) => m.MediaListComponent
-      ),
+      import('./features/home/home.component').then((m) => m.HomeComponent),
   },
   {
     path: ':category',
     loadComponent: () =>
-      import('./pages/media-list/media-list.component').then(
-        (m) => m.MediaListComponent
-      ),
-  },
-  {
-    path: 'sign-in',
-    loadComponent: () =>
-      import('./pages/sign-in/sign-in.component').then(
-        (m) => m.SignInComponent
-      ),
-  },
-  {
-    path: 'sign-up',
-    loadComponent: () =>
-      import('./pages/sign-up/sign-up.component').then(
-        (m) => m.SignUpComponent
+      import('./features/media-category/media-category.component').then(
+        (m) => m.MediaCategoryComponent
       ),
   },
 ];
