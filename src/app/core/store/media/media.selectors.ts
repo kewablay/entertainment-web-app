@@ -14,18 +14,18 @@ export const selectSearchTerm = createSelector(
   (state) => state.searchTerm
 );
 
-
 export const selectFilteredMediaItems = (category: string | null) =>
-  createSelector(selectAllMediaItems, selectSearchTerm, (media, searchTerm) => {
-    if (!searchTerm) return media;
-    return media.filter((item) => {
-      const matchesSearch = item.title
-        .toLowerCase()
-        .includes(searchTerm.toLowerCase());
-
-      const matchesCategory =
-        !category || item.category.toLowerCase() === category.toLowerCase();
-
-      return matchesSearch && matchesCategory;
-    });
-  });
+  createSelector(
+    selectAllMediaItems,
+    selectSearchTerm,
+    (mediaItems: Media[], searchTerm: string = '') => {
+      return mediaItems.filter((item) => {
+        const matchesSearch = item.title
+          .toLowerCase()
+          .includes(searchTerm.toLowerCase());
+        const matchesCategory =
+          !category || item.category.toLowerCase() === category.toLowerCase();
+        return matchesSearch && matchesCategory;
+      });
+    }
+  );
