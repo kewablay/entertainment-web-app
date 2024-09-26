@@ -16,3 +16,9 @@ export const setSearchTerm = createAction(
   '[Media] Set Search Term',
   props<{ searchTerm: string }>()
 );
+
+// UPDATE MEDIA
+export const bookmarkMedia = createAction(
+  '[Media] Bookmark Media',
+  props<{ mediaId: number }>()
+);

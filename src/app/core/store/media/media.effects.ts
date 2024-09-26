@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { DataService } from '../../services/data-service/data.service';
-import { Store } from '@ngrx/store';
+import { select, Store } from '@ngrx/store';
 import { LocalStorageService } from '../../services/local-storage-service/local-storage.service';
-import { loadMedia, loadMediaSuccess } from './media.actions';
+import { bookmarkMedia, loadMedia, loadMediaSuccess } from './media.actions';
 import { of, switchMap, tap } from 'rxjs';
+import { selectAllMediaItems } from './media.selectors';
 
 @Injectable()
 export class MediaEffects {
@@ -32,5 +33,19 @@ export class MediaEffects {
         }
       })
     )
+  );
+
+  updateLocaStorage$ = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(bookmarkMedia),
+        switchMap(() =>
+          this.store.pipe(
+            select(selectAllMediaItems),
+            tap((media) => this.localStorageService.setItem('media', media))
+          )
+        )
+      ),
+    { dispatch: false } // do not dispatch any actions
   );
 }

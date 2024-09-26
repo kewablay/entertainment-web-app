@@ -1,6 +1,7 @@
 import { createReducer, on } from '@ngrx/store';
 import { Media } from '../../models/app.model';
 import {
+  bookmarkMedia,
   loadMedia,
   loadMediaError,
   loadMediaSuccess,
@@ -30,5 +31,15 @@ export const mediaReducer = createReducer(
     loading: false,
   })),
   on(loadMediaError, (state, { error }) => ({ ...state, error })),
-  on(setSearchTerm, (state, { searchTerm }) => ({ ...state, searchTerm }))
+  on(setSearchTerm, (state, { searchTerm }) => ({ ...state, searchTerm })),
+
+  on(bookmarkMedia, (state, { mediaId }) => {
+    const media = state.media.map((media: Media) => {
+      if (media.id === mediaId) {
+        return { ...media, isBookmarked: !media.isBookmarked };
+      }
+      return media;
+    });
+    return { ...state, media };
+  })
 );
