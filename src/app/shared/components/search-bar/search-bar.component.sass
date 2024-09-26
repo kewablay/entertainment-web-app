@@ -24,11 +24,19 @@
         caret-color: $clr-red
         border-bottom: solid 1px #ffffff00
         transition: .25s ease
+        font-size: get-font-size(body, 'lg')
+
+        +breakpoint(medium)
+            font-size: get-font-size(header, 'md')
 
         &::placeholder
             color: $text-secondary
             font-family: $ff-outfit
             font-weight: 300
+            font-size: get-font-size(body, 'lg')
+
+            +breakpoint(medium)
+                font-size: get-font-size(header, 'md')
 
         &:focus
             border-color: $greyish-blue
