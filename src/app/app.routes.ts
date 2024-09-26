@@ -1,6 +1,11 @@
 import { Routes } from '@angular/router';
 
 export const routes: Routes = [
+  {
+    path: '',
+    redirectTo: '/login',
+    pathMatch: 'full',
+  },
   // AUTH ROUTES
   {
     path: '',
@@ -57,7 +62,7 @@ export const routes: Routes = [
     ],
   },
   // Default Route
-  { path: '**', redirectTo: '/home', pathMatch: 'full' },
+  { path: '**', redirectTo: '/signup', pathMatch: 'full' },
 ];
 
 // {
