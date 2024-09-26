@@ -1,0 +1,33 @@
+<section class="bookmark">
+  <section class="content">
+    <app-search-bar />
+    @if(filteredBookmarks$ | async; as filteredBookmarks) {
+    <div class="media-list">
+      <!-- Movies Section -->
+      <div class="movies">
+        <h1>Book Movies</h1>
+        <div class="movies-list custom-grid">
+          @for(media of filteredBookmarks; track media) { @if (media.category
+          === 'Movie') {
+          <app-card [media]="media" />
+
+          } }
+        </div>
+      </div>
+      <!-- Movies Section ends -->
+
+      <!-- Tv-series for you  -->
+      <div class="tv-series">
+        <h1>Bookmarked TV Series</h1>
+        <div class="tv-series-list custom-grid">
+          @for(media of filteredBookmarks; track media) { @if (media.category
+          === 'TV Series') {
+          <app-card [media]="media" />
+          } }
+        </div>
+      </div>
+      <!-- Tv-series for you ends -->
+    </div>
+    }
+  </section>
+</section>
