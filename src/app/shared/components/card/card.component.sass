@@ -16,6 +16,7 @@
     right: 15px
     cursor: pointer
     transition: .3s ease
+    z-index: 2
 
     &:hover
         background: white
@@ -23,6 +24,7 @@
         svg
             path 
                 stroke: black
+
     
 .overlay 
     @include flex-center()
@@ -73,7 +75,9 @@
                 pointer-events: initial
 
     
-
+        .bookmark-btn:hover ~ .overlay
+            opacity: 0
+            pointer-events: none
 
     +breakpoint(small) 
         width: 500px
@@ -118,15 +122,6 @@
     +flex($direction: column, $gap: .5rem)
     position: relative
 
-    &:hover
-        .overlay
-            opacity: 1
-            pointer-events: initial
-
-            .play-btn
-                opacity: 1
-                transform: scale(1)
-                pointer-events: initial
 
 
     .card-img
@@ -134,17 +129,25 @@
         height: 140px
         border-radius: 10px
         overflow: hidden
-        position: relative
-
+        position: relative        
+        
         +breakpoint(small) 
             height: 180px
-        
         img
             width: 100%
             border-radius: 10px
             height: 100%
             object-fit: cover
 
+        &:hover
+            .overlay
+                opacity: 1
+                pointer-events: initial
+
+                .play-btn
+                    opacity: 1
+                    transform: scale(1)
+                    pointer-events: initial
     .card-body
         .detail 
             +flex($direction: column, $gap: .3rem)
