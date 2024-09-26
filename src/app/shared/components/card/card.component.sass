@@ -2,6 +2,9 @@
 @use '../../../../styles/_variables.sass' as *
 @use '../../../../styles/_functions.sass' as *
 
+img
+    transition: .3s ease
+
 .bookmark-btn 
     +flex-center()
     border: none
@@ -16,7 +19,7 @@
     right: 15px
     cursor: pointer
     transition: .3s ease
-    z-index: 2
+    z-index: 2000
 
     &:hover
         background: white
@@ -41,6 +44,7 @@
     opacity: 0
     pointer-events: none
     transition: .2s ease
+    z-index: 1000
 
     
     .play-btn
@@ -82,6 +86,9 @@
         .bookmark-btn:hover ~ .overlay
             opacity: 0
             pointer-events: none
+
+        img 
+            transform: scale(1.05)
 
     +breakpoint(small) 
         width: 500px
@@ -137,10 +144,14 @@
         
         +breakpoint(small) 
             height: 180px
+
+        &:hover
+            img
+                transform: scale(1.05)
         img
             width: 100%
-            border-radius: 10px
             height: 100%
+            // border-radius: 10px
             object-fit: cover
 
         &:hover
@@ -152,6 +163,8 @@
                     opacity: 1
                     transform: scale(1)
                     pointer-events: initial
+            
+            
     .card-body
         .detail 
             +flex($direction: column, $gap: .3rem)
