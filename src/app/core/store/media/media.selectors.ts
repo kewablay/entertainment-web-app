@@ -9,6 +9,10 @@ export const selectAllMediaItems = createSelector(
   (state) => state.media
 );
 
+export const selectBookmarks = createSelector(selectMediaState, (state) =>
+  state.media.filter((item: Media) => item.isBookmarked)
+);
+
 export const selectSearchTerm = createSelector(
   selectMediaState,
   (state) => state.searchTerm
@@ -29,3 +33,16 @@ export const selectFilteredMediaItems = (category: string | null) =>
       });
     }
   );
+
+export const selectFilteredBookMarks = createSelector(
+  selectBookmarks,
+  selectSearchTerm,
+  (mediaItems: Media[], searchTerm: string = '') => {
+    return mediaItems.filter((item) => {
+      const matchesSearch = item.title
+        .toLowerCase()
+        .includes(searchTerm.toLowerCase());
+      return matchesSearch;
+    });
+  }
+);
