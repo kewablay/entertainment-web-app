@@ -13,4 +13,15 @@ export const routes: Routes = [
         (m) => m.MediaCategoryComponent
       ),
   },
+  {
+    path: 'bookmarks',
+    loadComponent: () =>
+      import('./features/bookmarks/bookmarks.component').then(
+        (m) => m.BookmarksComponent
+      ),
+  },
+  {
+    path: '**',
+    redirectTo: 'home',
+  },
 ];
