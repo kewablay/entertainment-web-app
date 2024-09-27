@@ -1,19 +1,62 @@
 <section>
   <div class="logo"></div>
 
-  <form class="signup">
+  <form [formGroup]="signUpForm" class="signup" (submit)="onSubmit()">
     <h1>Sign Up</h1>
+
+    <!-- Email input -->
     <div class="input-group">
-      <input type="text" name="username" id="username" placeholder="Username" />
+      <input
+        formControlName="email"
+        type="email"
+        name="email"
+        id="email"
+        placeholder="Email Address"
+      />
+      @if(signUpForm.get('email')?.invalid && signUpForm.get('email')?.touched){
+      @if(signUpForm.get('email')?.errors?.['required']){
+      <small class="text-warning">Email is required</small>
+      } @if(signUpForm.get('email')?.errors?.['email']){
+      <small class="text-warning">Invalid email format</small>
+      } }
+    </div>
+
+    <!-- Password Input -->
+    <div class="input-group">
+      <input
+        formControlName="password"
+        type="password"
+        name="password"
+        id="password"
+        placeholder="Password"
+      />
+      @if(signUpForm.get('password')?.invalid &&
+      signUpForm.get('password')?.touched){
+      @if(signUpForm.get('password')?.errors?.['required']){
+      <small class="text-warning">Password is required</small>
+      } @if(signUpForm.get('password')?.errors?.['minlength']){
+      <small class="text-warning">Password must be at least 6 characters</small>
+      }}
     </div>
     <div class="input-group">
-      <input type="password" name="password" id="password" placeholder="Password" />
-    </div>
-    <div class="input-group">
-      <input type="password" name="confirmPassword" id="confirmPassword" placeholder="Confirm Password"/>
+      <input
+        type="password"
+        name="confirmPassword"
+        id="confirmPassword"
+        placeholder="Confirm Password"
+        formControlName="confirmPassword"
+      />
+
+      @if(signUpForm.hasError('mismatch') && signUpForm.get('confirmPassword')?.touched){
+        
+        <small class="text-warning">Passwords do not match.</small>
+      }
+
     </div>
     <button type="submit">Create an account</button>
 
-    <p>Already have an account? <a class="link" routerLink="['login']">Login</a></p>
+    <p>
+      Already have an account? <a class="link" routerLink="['login']">Login</a>
+    </p>
   </form>
 </section>
