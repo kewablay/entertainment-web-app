@@ -1,10 +1,22 @@
 <section>
   <div class="logo"></div>
 
-  <form class="signin">
+  <form class="signin" [formGroup]="signInForm" (submit)="onSubmit()">
     <h1>Login</h1>
     <div class="input-group">
-      <input type="text" name="username" id="username" placeholder="Username" />
+      <input
+        formControlName="email"
+        type="text"
+        name="email"
+        id="email"
+        placeholder="Email"
+      />
+      @if(signInForm.get('email')?.invalid && signInForm.get('email')?.touched){
+      @if(signInForm.get('email')?.errors?.['required']){
+      <small class="text-warning">Email is required</small>
+      } @if(signInForm.get('email')?.errors?.['email']){
+      <small class="text-warning">Invalid email format</small>
+      } }
     </div>
     <div class="input-group">
       <input
@@ -12,9 +24,17 @@
         name="password"
         id="password"
         placeholder="Password"
+        formControlName="password"
       />
+      @if(signInForm.get('password')?.invalid &&
+      signInForm.get('password')?.touched){
+      @if(signInForm.get('password')?.errors?.['required']){
+      <small class="text-warning">Password is required</small>
+      } @if(signInForm.get('password')?.errors?.['minlength']){
+      <small class="text-warning">Password must be at least 6 characters</small>
+      }}
     </div>
-    <button type="submit">Create an account</button>
+    <button type="submit">Login to your account</button>
 
     <p>
       Don't have an account? <a class="link" routerLink="['signup']">Signup</a>
