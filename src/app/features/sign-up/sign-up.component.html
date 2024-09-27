@@ -47,11 +47,11 @@
         formControlName="confirmPassword"
       />
 
-      @if(signUpForm.hasError('mismatch') && signUpForm.get('confirmPassword')?.touched){
-        
-        <small class="text-warning">Passwords do not match.</small>
-      }
+      @if(signUpForm.hasError('mismatch') &&
+      signUpForm.get('confirmPassword')?.touched){
 
+      <small class="text-warning">Passwords do not match.</small>
+      }
     </div>
     <button type="submit">Create an account</button>
 
