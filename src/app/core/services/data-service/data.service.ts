@@ -10,6 +10,6 @@ export class DataService {
   constructor(private http: HttpClient) {}
 
   getData() {
-    return this.http.get<Media[]>(environment.apiUrl);
+    return this.http.get<Media[]>(`${environment.apiUrl}/movies`);
   }
 }
