@@ -20,3 +20,9 @@ export interface Media {
   isBookmarked: boolean;
   isTrending: boolean;
 }
+
+
+export interface authData {
+  email: string,
+  password: string
+}
