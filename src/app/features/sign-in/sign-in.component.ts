@@ -20,6 +20,7 @@ import { NOTYF } from '../../shared/utils/notyf.token';
 })
 export class SignInComponent {
   signInForm!: FormGroup;
+  loginLoading: boolean = false;
 
   constructor(
     private fb: FormBuilder,
@@ -38,13 +39,16 @@ export class SignInComponent {
 
   onSubmit() {
     if (this.signInForm.valid) {
+      this.loginLoading = true;
       this.authService.login(this.signInForm.value).subscribe({
         next: (response) => {
+          this.loginLoading = false;
           this.localStorageService.setItem('AUTH_TOKEN', response.token);
           this.notyf.success('Signed in successfully');
           this.router.navigate(['home']);
         },
         error: (error) => {
+          this.loginLoading = false;
           this.notyf.error(
             error.error.message
               ? error.error.message

@@ -53,7 +53,11 @@
       <small class="text-warning">Passwords do not match.</small>
       }
     </div>
-    <button type="submit">Create an account</button>
+    <button type="submit">
+      @if(signUpLoading){
+      <div class="loader"></div>
+      }@else{ Create an account }
+    </button>
 
     <p>
       Already have an account? <a class="link" routerLink="/login">Login</a>

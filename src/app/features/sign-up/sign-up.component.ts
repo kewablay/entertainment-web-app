@@ -20,6 +20,7 @@ import { NOTYF } from '../../shared/utils/notyf.token';
 })
 export class SignUpComponent {
   signUpForm!: FormGroup;
+  signUpLoading: boolean = false;
 
   constructor(
     private fb: FormBuilder,
@@ -50,15 +51,17 @@ export class SignUpComponent {
     if (this.signUpForm.valid) {
       const { email, password } = this.signUpForm.value;
       const signUpData = { email, password };
+      this.signUpLoading = true;
 
       this.authService.signUp(signUpData).subscribe({
         next: (response) => {
-          console.log('response from signup request: ', response);
+          this.signUpLoading = false;
           this.notyf.success('Account created successful.');
           this.router.navigate(['/login']);
         },
-
+        
         error: (error) => {
+          this.signUpLoading = false;
           console.log('error from signup request: ', error);
           this.notyf.error('Error signing up. Please try again.');
         },

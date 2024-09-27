@@ -34,7 +34,11 @@
       <small class="text-warning">Password must be at least 6 characters</small>
       }}
     </div>
-    <button type="submit">Login to your account</button>
+    <button type="submit">
+      @if(loginLoading){
+        <div class="loader"></div>
+        }@else{ Login to your account }
+      </button>
 
     <p>
       Don't have an account? <a class="link" routerLink="/signup">Signup</a>
