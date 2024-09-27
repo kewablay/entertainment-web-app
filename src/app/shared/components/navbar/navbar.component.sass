@@ -14,6 +14,7 @@ nav
     padding: 1rem
     margin-bottom: 1rem
     z-index: 1000
+    position: relative
 
     +breakpoint(xlarge)
         position: fixed
@@ -42,17 +43,49 @@ nav
             +flex-center()
             
 
-    .profile
-        width: 30px
-        height: 30px
-        overflow: hidden
-        border-radius: 50%
-        border: 1px solid white
-
+    .profile-container 
         +breakpoint(xlarge)
             margin-top: auto
 
-        img
-            width: 100%
-            height: 100%
-            object-fit: cover
+        .profile
+            width: 30px
+            height: 30px
+            overflow: hidden
+            border-radius: 50%
+            border: 1px solid white
+            position: relative
+
+
+            img
+                width: 100%
+                height: 100%
+                object-fit: cover
+
+        
+            
+        .menu
+            display: none
+            // opacity: 0
+            // pointer-events: none
+            position: absolute
+            bottom: -.5rem 
+            right: 1rem
+            background: $background
+            border: 1px solid #79797950
+            transition: .2s ease
+
+            button
+                border: none
+                outline: none
+                background: transparent
+                padding: .3rem
+                cursor: pointer
+            
+            +breakpoint(xlarge)
+                left: 3rem 
+                bottom: 1rem
+                width: 60px
+
+    .profile-container:hover
+        .menu
+            display: initial

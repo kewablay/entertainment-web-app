@@ -45,8 +45,11 @@ export class SignInComponent {
           this.router.navigate(['home']);
         },
         error: (error) => {
-          console.log('error from login request: ', error.error.message);
-          this.notyf.error(error.error.message);
+          this.notyf.error(
+            error.error.message
+              ? error.error.message
+              : 'Error signing in. Please try again'
+          );
         },
       });
     } else {
