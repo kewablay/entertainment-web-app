@@ -2,6 +2,9 @@
 @use '../../../styles/_mixins.sass' as *
 @use '../../../styles/_functions.sass' as *
 
+.text-warning
+    margin-top: .5rem
+
 input
     background: $bg-accent
     width: 100%
@@ -21,8 +24,9 @@ input
         border-color: white
 
 section 
-    width: 80%
-    width: 500px
+    width: 100%
+    +breakpoint(medium)
+        width: 500px
 
 form 
     background: $bg-accent
