@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, tap } from 'rxjs';
+import { catchError, Observable, tap, throwError } from 'rxjs';
 import { authData } from '../../models/app.model';
 
 @Injectable({
@@ -13,7 +13,13 @@ export class AuthService {
 
   signUp(signUpData: authData): Observable<any> {
     console.log('About to register user : ', signUpData);
-    return this.http.post<any>(`${this.apiUrl}/register`, signUpData);
+    return this.http.post<any>(`${this.apiUrl}/register`, signUpData).pipe(
+      catchError((error) => {
+        // Handle the error and pass the message to the subscriber
+        console.error('Error from register request: ', error);
+        return throwError(() => new Error(error));
+      })
+    );
   }
 
   login(loginData: authData): Observable<any> {

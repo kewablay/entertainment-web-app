@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import {
   FormBuilder,
   FormControl,
@@ -8,6 +8,8 @@ import {
 } from '@angular/forms';
 import { AuthService } from '../../core/services/auth-service/auth.service';
 import { Router } from '@angular/router';
+import { Notyf } from 'notyf';
+import { NOTYF } from '../../shared/utils/notyf.token';
 
 @Component({
   selector: 'app-sign-up',
@@ -22,7 +24,8 @@ export class SignUpComponent {
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    @Inject(NOTYF) private notyf: Notyf
   ) {}
 
   ngOnInit(): void {
@@ -48,9 +51,17 @@ export class SignUpComponent {
       const { email, password } = this.signUpForm.value;
       const signUpData = { email, password };
 
-      this.authService.signUp(signUpData).subscribe((response) => {
-        console.log('response from signup request: ', response);
-        this.router.navigate(['/login']);
+      this.authService.signUp(signUpData).subscribe({
+        next: (response) => {
+          console.log('response from signup request: ', response);
+          this.notyf.success('Account created successful.');
+          this.router.navigate(['/login']);
+        },
+
+        error: (error) => {
+          console.log('error from signup request: ', error);
+          this.notyf.error('Error signing up. Please try again.');
+        },
       });
     } else {
       console.log('signup form invalid');

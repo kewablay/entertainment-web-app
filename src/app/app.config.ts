@@ -8,6 +8,7 @@ import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { provideHttpClient } from '@angular/common/http';
 import { mediaReducer } from './core/store/media/media.reducer';
 import { MediaEffects } from './core/store/media/media.effects';
+import { NOTYF, notyfFactory } from './shared/utils/notyf.token';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -20,5 +21,6 @@ export const appConfig: ApplicationConfig = {
     provideEffects(MediaEffects),
     provideHttpClient(),
     provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode() }),
+    { provide: NOTYF, useFactory: notyfFactory },
   ],
 };
