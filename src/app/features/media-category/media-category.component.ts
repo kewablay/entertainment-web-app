@@ -8,7 +8,8 @@ import { NavbarComponent } from '../../shared/components/navbar/navbar.component
 import { SearchBarComponent } from '../../shared/components/search-bar/search-bar.component';
 import { AsyncPipe } from '@angular/common';
 import { AppState } from '../../core/store/app.state';
-import { CardComponent } from "../../shared/components/card/card.component";
+import { CardComponent } from '../../shared/components/card/card.component';
+import { loadMedia } from '../../core/store/media/media.actions';
 
 @Component({
   selector: 'app-media-category',
@@ -24,6 +25,8 @@ export class MediaCategoryComponent {
   constructor(private store: Store<AppState>, private route: ActivatedRoute) {}
 
   ngOnInit() {
+    this.store.dispatch(loadMedia());
+
     this.filteredMediaItems$ = this.route.paramMap.pipe(
       switchMap((params) => {
         this.category = params.get('category');
@@ -31,5 +34,4 @@ export class MediaCategoryComponent {
       })
     );
   }
-  
 }

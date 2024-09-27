@@ -6,6 +6,7 @@ import { Media } from '../../core/models/app.model';
 import { selectFilteredBookMarks } from '../../core/store/media/media.selectors';
 import { CardComponent } from "../../shared/components/card/card.component";
 import { AsyncPipe } from '@angular/common';
+import { loadMedia } from '../../core/store/media/media.actions';
 
 @Component({
   selector: 'app-bookmarks',
@@ -18,6 +19,10 @@ export class BookmarksComponent {
   filteredBookmarks$: Observable<Media[]>;
   constructor(private store: Store) {
     this.filteredBookmarks$ = this.store.select(selectFilteredBookMarks);
+  }
+
+  ngOnInit() {
+    this.store.dispatch(loadMedia());
   }
 
 }
