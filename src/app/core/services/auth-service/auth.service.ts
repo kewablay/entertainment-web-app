@@ -3,12 +3,16 @@ import { Injectable } from '@angular/core';
 import { catchError, Observable, tap, throwError } from 'rxjs';
 import { authData } from '../../models/app.model';
 import { environment } from '../../../../environments/environment.development';
+import { LocalStorageService } from '../local-storage-service/local-storage.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    private localStorageService: LocalStorageService
+  ) {}
 
   signUp(signUpData: authData): Observable<any> {
     console.log('About to register user : ', signUpData);
@@ -38,6 +42,6 @@ export class AuthService {
   }
 
   logOut(): void {
-    localStorage.removeItem('AUTH_TOKEN');
+    this.localStorageService.removeItem('AUTH_TOKEN');
   }
 }
