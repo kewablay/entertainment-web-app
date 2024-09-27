@@ -1,7 +1,10 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable, of, switchMap } from 'rxjs';
-import { selectFilteredMediaItems } from '../../core/store/media/media.selectors';
+import {
+  selectFilteredMediaItems,
+  selectMediaLoading,
+} from '../../core/store/media/media.selectors';
 import { Media } from '../../core/models/app.model';
 import { ActivatedRoute } from '@angular/router';
 import { NavbarComponent } from '../../shared/components/navbar/navbar.component';
@@ -21,8 +24,11 @@ import { loadMedia } from '../../core/store/media/media.actions';
 export class MediaCategoryComponent {
   filteredMediaItems$!: Observable<Media[]>;
   category: string | null = null;
+  mediaLoading$: Observable<boolean>;
 
-  constructor(private store: Store<AppState>, private route: ActivatedRoute) {}
+  constructor(private store: Store<AppState>, private route: ActivatedRoute) {
+    this.mediaLoading$ = this.store.select(selectMediaLoading);
+  }
 
   ngOnInit() {
     this.store.dispatch(loadMedia());

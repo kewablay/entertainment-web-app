@@ -1,7 +1,11 @@
 <section class="bookmark">
   <section class="content">
     <app-search-bar />
-    @if(filteredBookmarks$ | async; as filteredBookmarks) {
+    @if(mediaLoading$ | async; as mediaLoading) {
+    <div class="loading-container">
+      <div class="loader2"></div>
+    </div>
+    } @else { @if(filteredBookmarks$ | async; as filteredBookmarks) {
     <div class="media-list">
       <!-- Movies Section -->
       <div class="movies">
@@ -13,7 +17,7 @@
 
           } } @empty {
           <div class="text-secondary">
-            <p>No movies </p>
+            <p>No movies</p>
           </div>
           }
         </div>
@@ -36,6 +40,6 @@
       </div>
       <!-- Tv-series for you ends -->
     </div>
-    }
+    } }
   </section>
 </section>

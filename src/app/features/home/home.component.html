@@ -7,7 +7,7 @@
     <div class="loading-container">
       <div class="loader2"></div>
     </div>
-    } @if(filteredMedia$ | async; as filteredMediaItems ) {
+    } @else { @if(filteredMedia$ | async; as filteredMediaItems ) {
     <div class="media-list">
       <!-- Trending Section -->
       <div class="trending">
@@ -35,6 +35,6 @@
       </div>
       <!-- Recommended for you ends -->
     </div>
-    }
+    } }
   </section>
 </section>
