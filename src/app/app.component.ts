@@ -15,7 +15,7 @@ import { NavbarComponent } from "./shared/components/navbar/navbar.component";
 })
 export class AppComponent {
   constructor(private store: Store) {}
-  ngOnInit() {
-    this.store.dispatch(loadMedia());
-  }
+  // ngOnInit() {
+  //   this.store.dispatch(loadMedia());
+  // }
 }
