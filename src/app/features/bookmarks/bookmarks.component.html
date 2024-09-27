@@ -11,7 +11,11 @@
           === 'Movie') {
           <app-card [media]="media" />
 
-          } }
+          } } @empty {
+          <div class="text-secondary">
+            <p>No movies </p>
+          </div>
+          }
         </div>
       </div>
       <!-- Movies Section ends -->
@@ -23,7 +27,11 @@
           @for(media of filteredBookmarks; track media) { @if (media.category
           === 'TV Series') {
           <app-card [media]="media" />
-          } }
+          } } @empty {
+          <div class="text-secondary">
+            <p>No TV series</p>
+          </div>
+          }
         </div>
       </div>
       <!-- Tv-series for you ends -->

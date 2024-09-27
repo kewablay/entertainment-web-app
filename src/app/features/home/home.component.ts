@@ -5,6 +5,7 @@ import { Media } from '../../core/models/app.model';
 import {
   selectAllMediaItems,
   selectFilteredMediaItems,
+  selectMediaLoading,
 } from '../../core/store/media/media.selectors';
 import { AsyncPipe } from '@angular/common';
 import { NavbarComponent } from '../../shared/components/navbar/navbar.component';
@@ -30,9 +31,11 @@ import { loadMedia } from '../../core/store/media/media.actions';
 export class HomeComponent {
   searchTerm = '';
   filteredMedia$: Observable<Media[]>;
+  mediaLoading$: Observable<boolean>;
 
   constructor(private store: Store, private route: ActivatedRoute) {
     this.filteredMedia$ = this.store.select(selectFilteredMediaItems(null));
+    this.mediaLoading$ = this.store.select(selectMediaLoading);
   }
 
   onSearchTermChange(searchTerm: string) {

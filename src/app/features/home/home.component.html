@@ -1,7 +1,13 @@
 <section class="home">
   <section class="content">
     <app-search-bar />
-    @if(filteredMedia$ | async; as filteredMediaItems) {
+    <!-- MEDIA LOADING -->
+
+    @if(mediaLoading$ | async; as mediaLoading) {
+    <div class="loading-container">
+      <div class="loader2"></div>
+    </div>
+    } @if(filteredMedia$ | async; as filteredMediaItems ) {
     <div class="media-list">
       <!-- Trending Section -->
       <div class="trending">
@@ -22,7 +28,7 @@
         <div class="recommended-list custom-grid">
           @for(media of filteredMediaItems; track media) {
 
-          <app-card [media]="media"  />
+          <app-card [media]="media" />
 
           }
         </div>

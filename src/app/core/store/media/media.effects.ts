@@ -3,8 +3,13 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { DataService } from '../../services/data-service/data.service';
 import { select, Store } from '@ngrx/store';
 import { LocalStorageService } from '../../services/local-storage-service/local-storage.service';
-import { bookmarkMedia, loadMedia, loadMediaSuccess } from './media.actions';
-import { of, switchMap, tap } from 'rxjs';
+import {
+  bookmarkMedia,
+  loadMedia,
+  loadMediaError,
+  loadMediaSuccess,
+} from './media.actions';
+import { catchError, of, switchMap, tap } from 'rxjs';
 import { selectAllMediaItems } from './media.selectors';
 
 @Injectable()
@@ -31,6 +36,10 @@ export class MediaEffects {
             })
           );
         }
+      }),
+      catchError((error) => {
+        console.error('Error loading media:', error);
+        return of(loadMediaError({ error }));
       })
     )
   );

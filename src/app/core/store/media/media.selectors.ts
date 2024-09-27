@@ -46,3 +46,13 @@ export const selectFilteredBookMarks = createSelector(
     });
   }
 );
+
+export const selectMediaError = createSelector(
+  selectMediaState,
+  (state) => state.error
+);
+
+export const selectMediaLoading = createSelector(
+  selectMediaState,
+  (state) => state.loading
+);
