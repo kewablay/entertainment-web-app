@@ -59,11 +59,15 @@ export class SignUpComponent {
           this.notyf.success('Account created successful.');
           this.router.navigate(['/login']);
         },
-        
+
         error: (error) => {
           this.signUpLoading = false;
           console.log('error from signup request: ', error);
-          this.notyf.error('Error signing up. Please try again.');
+          this.notyf.error(
+            error.error.message
+              ? error.error.message
+              : 'Error signing up. Please try again'
+          );
         },
       });
     } else {

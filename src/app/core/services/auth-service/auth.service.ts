@@ -19,10 +19,8 @@ export class AuthService {
     return this.http
       .post<authData>(`${environment.apiUrl}/register`, signUpData)
       .pipe(
-        catchError((error) => {
-          // Handle the error and pass the message to the subscriber
-          console.error('Error from register request: ', error);
-          return throwError(() => new Error(error));
+        tap((response) => {
+          console.log('response from login request: ', response);
         })
       );
   }
